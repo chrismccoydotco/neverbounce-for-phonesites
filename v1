@@ -1,0 +1,27 @@
+<script type="text/javascript">
+    _NBSettings = {
+        apiKey: 'ENTER YOUR API KEY HERE',
+        displayPoweredBy: false,
+        feedbackClass: "nb-feedback",
+        displayPoweredBy: true,
+    };
+</script>
+<script type="text/javascript" src="https://cdn.neverbounce.com/widget/dist/NeverBounce.js"></script>
+<script>
+var emailInput = document.querySelector('#email');
+var submitBtn = document.querySelector('#submit');
+submitBtn.disabled= true;
+submitBtn.style.opacity=.5;
+_nb.fields.registerListener(emailInput, true);
+document.querySelector('body').addEventListener('nb:registered', function (event) {
+  emailInput.addEventListener('nb:result', function(e) {
+      if (e.detail.result.is(_nb.settings.getAcceptedStatusCodes())) {
+        submitBtn.disabled=false;
+        submitBtn.style.opacity=1;
+      }else {
+        submitBtn.disabled= true;
+        submitBtn.style.opacity=.5;
+      };
+  });
+});
+</script>
